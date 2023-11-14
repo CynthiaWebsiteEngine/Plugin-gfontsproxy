@@ -1,0 +1,11 @@
+{
+  "name": "@cynthiacms/gfonts",
+  "version": "1.0.0",
+  "description": "Google Fonts proxy plugin for CynthiaCMS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MLC Bloeiman",
+  "license": "MIT"
+}

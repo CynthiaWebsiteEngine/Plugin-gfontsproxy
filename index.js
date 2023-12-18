@@ -1,10 +1,11 @@
 const path = require("path");
 const fs = require("fs");
 const https = require("https");
-module.exports = {
-  CyntiaPluginCompat: 1,
-  expressActions(app) {
-    app.get("/gfonts/*", (req, res) => {
+const express = require("express");
+const config = require("./config.json");
+const port = config.port;
+const app = new express();
+    app.get("/*", (req, res) => {
       const fonturl = req.originalUrl.replace("/gfonts/", "");
       if (fonturl == "") {
         console.log(fonturl + " is empty.");
@@ -69,5 +70,6 @@ module.exports = {
         );
       }
     });
-  },
-};
+    app.listen(port, () => {
+      console.log(`Gfonts proxy listening on port ${port}, proxied through Cynthia!`)
+    })

@@ -1,0 +1,10 @@
+{
+  "CyntiaPluginCompat": "2",
+  "runners": {
+    "pluginChildExecute": {
+      "type": "js",
+      "execute": "[\"index.js\"]"
+    },
+    "proxied": [["http://localhost:8012/gfonts/", "gfonts"]]
+  }
+}

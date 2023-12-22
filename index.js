@@ -6,16 +6,15 @@ const config = require("./config.json");
 const port = config.port;
 const app = new express();
     app.get("/*", (req, res) => {
-      const fonturl = req.originalUrl.replace("/gfonts/", "");
+      const fonturl = req.originalUrl.replace("/gfonts//", "").replace("/gfonts/", "");
       if (fonturl == "") {
-        console.log(fonturl + " is empty.");
         res.sendStatus(400);
         return;
       }
       if (
         !fonturl.includes("fonts.googleapis.com") &&
         !fonturl.includes("fonts.gstatic.com")
-      ) {
+        ) {
         console.log(fonturl + " is not a google fonts url.");
         res.sendStatus(400);
         return;
@@ -47,6 +46,7 @@ const app = new express();
       }
       const fontid = btoa(fonturl);
       const fontpath = path.join(gfontstoragedir, fontid);
+      console.log("Plugin: GFONTSproxy\t\t\t --> '" + fonturl+ "'")
       if (!fs.existsSync(fontpath)) {
         https.get(fonturl, (dl) => {
           const writer = fs.createWriteStream(fontpath);
@@ -58,7 +58,7 @@ const app = new express();
                 encoding: "utf8",
                 flag: "r",
               })
-            );
+              );
           });
         });
       } else {
@@ -67,9 +67,9 @@ const app = new express();
             encoding: "utf8",
             flag: "r",
           })
-        );
+          );
       }
     });
     app.listen(port, () => {
-      console.log(`Gfonts proxy listening on port ${port}, proxied through Cynthia!`)
+      console.log(`Plugin: GFONTSproxy\t\t\t --> listening on port ${port}, proxied through Cynthia!`)
     })

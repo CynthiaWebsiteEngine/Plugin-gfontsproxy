@@ -12,7 +12,6 @@ if (fs.existsSync(configfile)) {
 } else {
 	fs.writeFileSync(configfile, JSON.stringify(config));
 }
-const config = require("./config.json");
 const port = config.port;
 const app = new express();
 
@@ -97,4 +96,3 @@ app.listen(port, () => {
 		`Plugin: GFONTSproxy\t\t\t --> listening on port ${port}, proxied through Cynthia!`,
 	);
 });
-
